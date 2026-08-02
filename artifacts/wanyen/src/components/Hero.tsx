@@ -34,7 +34,7 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="relative z-10 container mx-auto px-6 md:px-12 flex flex-col items-center md:items-start text-center md:text-left mt-20">
+      <div className="relative z-10 container mx-auto px-6 md:px-12 flex flex-col items-center md:items-start text-center md:text-left mt-20 pb-28">
         
         
         <motion.h1
@@ -94,19 +94,6 @@ export function Hero() {
         </motion.div>
       </div>
 
-      <motion.div
-        animate={floatAnim}
-        className="absolute bottom-10 left-24 hidden md:flex flex-col items-center gap-2 text-white z-10"
-      >
-        <span className="text-sm font-black uppercase tracking-widest drop-shadow-md">Scroll Down</span>
-        <motion.div 
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-          className="mt-2 bg-white text-primary rounded-full p-2 shadow-lg"
-        >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
-        </motion.div>
-      </motion.div>
     </section>
   );
 }
