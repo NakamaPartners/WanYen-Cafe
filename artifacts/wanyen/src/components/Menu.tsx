@@ -95,13 +95,13 @@ export function Menu() {
           className="mt-20 text-center"
         >
           <a 
-            href="https://www.doordash.com/store/wanyen-cafe-salt-lake-city-34741881/77939394/?srsltid=AfmBOoqyyrqwtU_5K2dapTaGxsfSz-J6QRvOnAsal5_HOBH-zt9olKBG"
+            href="https://www.wanyenslc.com/"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-3 bg-primary text-primary-foreground px-8 py-4 rounded-full text-lg font-bold hover:bg-primary/90 transition-transform hover:scale-105 active:scale-95"
             data-testid="button-order-menu"
           >
-            Order on DoorDash
+            View Full Menu
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
         </motion.div>

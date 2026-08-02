@@ -26,16 +26,17 @@ export function Footer() {
 
           <div className="space-y-6">
             <h3 className="text-sm font-bold text-primary uppercase tracking-widest">Hours</h3>
-            <ul className="space-y-2 text-white/80">
-              <li className="flex justify-between max-w-xs">
-                <span>Sun–Thu</span>
-                <span>12pm – 9pm</span>
-              </li>
-              <li className="flex justify-between max-w-xs">
-                <span>Fri–Sat</span>
-                <span>12pm – 10pm</span>
-              </li>
-            </ul>
+            <div className="space-y-2 text-white/80">
+              <p>Check our Instagram for current hours</p>
+              <a 
+                href="https://www.instagram.com/wanyen.slc/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-primary hover:text-primary/80 transition-colors text-sm"
+              >
+                @wanyen.slc
+              </a>
+            </div>
           </div>
 
           <div className="space-y-6">
@@ -72,10 +73,14 @@ export function Footer() {
 
         <div className="flex flex-col md:flex-row items-center justify-between text-white/40 text-sm">
           <p>&copy; {new Date().getFullYear()} WanYen Cafe. All rights reserved.</p>
-          <div className="flex gap-6 mt-4 md:mt-0">
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-          </div>
+          <a 
+            href="https://www.wanyenslc.com/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="mt-4 md:mt-0 hover:text-white transition-colors"
+          >
+            wanyenslc.com
+          </a>
         </div>
       </div>
     </footer>

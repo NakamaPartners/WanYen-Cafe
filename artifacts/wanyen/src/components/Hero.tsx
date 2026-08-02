@@ -65,13 +65,13 @@ export function Hero() {
             Explore Menu
           </button>
           <a 
-            href="https://www.doordash.com/store/wanyen-cafe-salt-lake-city-34741881/77939394/?srsltid=AfmBOoqyyrqwtU_5K2dapTaGxsfSz-J6QRvOnAsal5_HOBH-zt9olKBG"
+            href="https://www.instagram.com/wanyen.slc/"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-white/10 backdrop-blur-md text-white border border-white/20 px-8 py-4 rounded-full text-base font-bold hover:bg-white/20 transition-transform hover:scale-105 active:scale-95 text-center"
-            data-testid="button-order-hero"
+            data-testid="button-instagram-hero"
           >
-            Order Delivery
+            Follow @wanyen.slc
           </a>
         </motion.div>
       </div>

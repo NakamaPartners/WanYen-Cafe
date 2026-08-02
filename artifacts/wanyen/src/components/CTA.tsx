@@ -44,13 +44,13 @@ export function CTA() {
             Buy Gift Cards
           </a>
           <a 
-            href="https://www.doordash.com/store/wanyen-cafe-salt-lake-city-34741881/77939394/"
+            href="https://www.instagram.com/wanyen.slc/"
             target="_blank"
             rel="noopener noreferrer"
             className="w-full sm:w-auto bg-transparent border-2 border-secondary text-secondary px-8 py-4 rounded-full text-lg font-bold hover:bg-secondary/10 transition-transform hover:scale-105 active:scale-95 text-center"
-            data-testid="button-order-delivery"
+            data-testid="button-instagram-cta"
           >
-            Order Delivery
+            Follow on Instagram
           </a>
         </motion.div>
       </div>
