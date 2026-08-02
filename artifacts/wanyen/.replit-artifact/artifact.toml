@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "WanYen Cafe"
+description = "A rich, immersive marketing website for WanYen Cafe — Utah's first Asian-inspired ice cream and dessert cafe in Downtown Salt Lake City. Showcases their handmade ice cream, signature desserts, drinks, origin story, location, and ordering. Built to be engaging, memorable, and drive new and returning customers to visit or order online."
+version = "1.0.0"
+id = "artifacts/wanyen"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23744
+
+[services.development]
+run = "pnpm --filter @workspace/wanyen run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/wanyen", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/wanyen/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23744"
+BASE_PATH = "/"
