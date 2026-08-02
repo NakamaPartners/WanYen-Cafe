@@ -1,138 +1,98 @@
-import { useEffect, useState } from 'react';
-import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion';
-import { Link, useLocation } from 'wouter';
-import { Menu, X } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import logo from '@assets/image_1785686573989.png';
-import { links } from '@/lib/wanyen-content';
-
-const navLinks = [
-  { label: 'Story', href: '/story' },
-  { label: 'Menu', href: '/menu' },
-  { label: 'Catering', href: '/catering' },
-  { label: 'Visit', href: '/visit' },
-];
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [location] = useLocation();
   const { scrollY } = useScroll();
-  const onHomeHero = location === '/' && !isScrolled;
 
-  useMotionValueEvent(scrollY, 'change', (latest) => {
-    setIsScrolled(latest > 48);
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    setIsScrolled(latest > 50);
   });
 
-  useEffect(() => {
-    setMenuOpen(false);
-  }, [location]);
+  const scrollTo = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const navLinks = [
+    { name: 'Our Story', id: 'story' },
+    { name: 'Menu', id: 'menu' },
+    { name: 'Gallery', id: 'gallery' },
+    { name: 'Catering', id: 'catering' },
+    { name: 'Location', id: 'location' },
+  ];
 
   return (
-    <>
-      <motion.header
-        initial={{ y: -80 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] as const }}
-        className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-300 ${
-          onHomeHero
-            ? 'border-transparent bg-transparent py-4 text-white md:py-5'
-            : 'border-[#2f1621]/15 bg-[#fff9f1]/95 py-2 text-[#2f1621] backdrop-blur-xl md:py-3'
-        }`}
-      >
-        <div className="page-wrap flex items-center justify-between">
-          <Link href="/" className="relative z-50" aria-label="WanYen Cafe home">
-            <img
-              src={logo}
-              alt="WanYen Cafe"
-              className={`h-16 w-16 object-contain transition-all md:h-[4.75rem] md:w-[4.75rem] ${
-                onHomeHero ? 'brightness-0 invert drop-shadow-sm' : ''
-              }`}
-            />
-          </Link>
+    <motion.header
+      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+        isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg py-3' : 'bg-transparent py-6'
+      }`}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+    >
+      <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
+        <motion.button 
+          whileHover={{ rotate: [-5, 5, -5, 5, 0], scale: 1.1 }}
+          transition={{ duration: 0.5 }}
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="z-50"
+          data-testid="link-home"
+        >
+          <img
+            src={logo}
+            alt="WanYen Cafe"
+            className={`h-28 w-auto drop-shadow-md transition-all duration-300 ${
+              isScrolled ? '' : 'brightness-0 invert'
+            }`}
+          />
+        </motion.button>
 
-          <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary navigation">
-            {navLinks.map((item) => {
-              const active = location === item.href;
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`border-b py-2 text-[0.68rem] font-bold uppercase tracking-[0.16em] transition-colors ${
-                    active
-                      ? 'border-current'
-                      : 'border-transparent hover:border-current/50'
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
-            <a
-              href={links.order}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`ml-3 border px-6 py-3 text-[0.68rem] font-bold uppercase tracking-[0.14em] transition-colors ${
-                onHomeHero
-                  ? 'border-white bg-white text-[#d92a6f] hover:bg-transparent hover:text-white'
-                  : 'border-[#2f1621] bg-[#2f1621] text-white hover:bg-transparent hover:text-[#2f1621]'
+        <nav className="hidden md:flex items-center gap-8">
+          {navLinks.map((link) => (
+            <motion.button
+              whileHover={{ scale: 1.1, y: -2 }}
+              key={link.id}
+              onClick={() => scrollTo(link.id)}
+              className={`text-lg font-extrabold tracking-wide transition-colors ${
+                isScrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-secondary drop-shadow-md'
               }`}
+              data-testid={`link-${link.id}`}
             >
-              Order online
-            </a>
-          </nav>
-
-          <button
-            type="button"
-            onClick={() => setMenuOpen((open) => !open)}
-            className="relative z-50 flex h-11 w-11 items-center justify-center border border-current lg:hidden"
-            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={menuOpen}
+              {link.name}
+            </motion.button>
+          ))}
+          <motion.a
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.95 }}
+            href="https://www.wanyenslc.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`px-8 py-3 rounded-full text-lg font-black transition-all ml-4 ${
+              isScrolled 
+                ? 'bg-primary text-white shadow-[0_4px_0_#cc0052] hover:shadow-[0_2px_0_#cc0052] hover:translate-y-[2px]' 
+                : 'bg-white text-primary shadow-[0_4px_0_#FFD23F] hover:shadow-[0_2px_0_#FFD23F] hover:translate-y-[2px]'
+            }`}
+            data-testid="button-order-nav"
           >
-            {menuOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
-        </div>
-      </motion.header>
-
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 flex bg-[#5c1736] px-8 pb-12 pt-28 text-white lg:hidden"
-          >
-            <nav className="flex w-full flex-col justify-between" aria-label="Mobile navigation">
-              <div className="border-t border-white/30">
-                {navLinks.map((item, index) => (
-                  <motion.div
-                    key={item.href}
-                    initial={{ opacity: 0, y: 16 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.05 * index }}
-                    className="border-b border-white/30"
-                  >
-                    <Link
-                      href={item.href}
-                      className="flex items-baseline justify-between py-5 font-editorial text-4xl font-light"
-                    >
-                      {item.label}
-                      <span className="font-sans text-[0.65rem] tracking-[0.2em]">0{index + 1}</span>
-                    </Link>
-                  </motion.div>
-                ))}
-              </div>
-              <a
-                href={links.order}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-between border-b border-white pb-3 text-xs font-bold uppercase tracking-[0.18em]"
-              >
-                Order online <span aria-hidden="true">↗</span>
-              </a>
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+            Order Online
+          </motion.a>
+        </nav>
+        
+        {/* Mobile menu button */}
+        <motion.button 
+          whileTap={{ scale: 0.9 }}
+          className={`md:hidden text-3xl p-2 rounded-full shadow-md z-50 ${
+            isScrolled ? 'bg-primary text-white' : 'bg-white text-primary'
+          }`}
+          aria-label="Menu"
+        >
+          ☰
+        </motion.button>
+      </div>
+    </motion.header>
   );
 }

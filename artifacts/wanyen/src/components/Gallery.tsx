@@ -11,7 +11,7 @@ const images = [
   "https://images.squarespace-cdn.com/content/v1/6917b0e60fe0b45457ea8578/de3fc37a-2fe5-492e-802d-4cb2daf82ed9/WanYenR2_14.jpeg",
 ];
 
-const springConf = { type: "spring" as const, stiffness: 300, damping: 20 };
+const springConf = { type: "spring", stiffness: 300, damping: 20 };
 
 export function Gallery() {
   const firstRow = [...images, ...images];

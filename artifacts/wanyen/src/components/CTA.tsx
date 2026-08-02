@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const springConf = { type: "spring" as const, stiffness: 300, damping: 20 };
+const springConf = { type: "spring", stiffness: 300, damping: 20 };
 
 export function CTA() {
   return (
