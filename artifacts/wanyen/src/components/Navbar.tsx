@@ -45,7 +45,9 @@ export function Navbar() {
           <img
             src={logo}
             alt="WanYen Cafe"
-            className="h-16 w-auto drop-shadow-md"
+            className={`h-20 w-auto drop-shadow-md transition-all duration-300 ${
+              isScrolled ? '' : 'brightness-0 invert'
+            }`}
           />
         </motion.button>
 

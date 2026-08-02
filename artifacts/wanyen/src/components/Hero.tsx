@@ -36,17 +36,6 @@ export function Hero() {
 
       <div className="relative z-10 container mx-auto px-6 md:px-12 flex flex-col items-center md:items-start text-center md:text-left mt-20">
         
-        <motion.div animate={floatAnim}>
-          <motion.div
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ ...springConf, delay: 0.1 }}
-            className="inline-flex items-center gap-3 mb-8 px-5 py-2 rounded-full bg-white shadow-xl shadow-black/10 border-2 border-white/20"
-          >
-            <span className="text-xl">🍦</span>
-            <span className="text-primary font-extrabold text-sm tracking-wide uppercase">Utah's First Asian Ice Cream Cafe</span>
-          </motion.div>
-        </motion.div>
         
         <motion.h1
           initial={{ opacity: 0, scale: 0.8 }}
@@ -107,7 +96,7 @@ export function Hero() {
 
       <motion.div
         animate={floatAnim}
-        className="absolute bottom-10 left-1/2 md:left-24 -translate-x-1/2 md:translate-x-0 flex flex-col items-center gap-2 text-white z-10"
+        className="absolute bottom-10 left-24 hidden md:flex flex-col items-center gap-2 text-white z-10"
       >
         <span className="text-sm font-black uppercase tracking-widest drop-shadow-md">Scroll Down</span>
         <motion.div 
