@@ -34,7 +34,7 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="relative z-10 container mx-auto px-6 md:px-12 flex flex-col items-center md:items-start text-center md:text-left mt-20 pb-28">
+      <div className="relative z-10 container mx-auto px-6 md:px-12 flex flex-col items-center md:items-start text-center md:text-left mt-20">
         
         
         <motion.h1
