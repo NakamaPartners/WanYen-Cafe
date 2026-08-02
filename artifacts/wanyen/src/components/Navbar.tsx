@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
+import logo from '@assets/image_1785686573989.png';
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -26,52 +27,69 @@ export function Navbar() {
 
   return (
     <motion.header
-      className={`fixed top-0 left-0 right-0 z-40 transition-colors duration-500 ${
-        isScrolled ? 'bg-background/90 backdrop-blur-md shadow-sm py-4' : 'bg-transparent py-6'
+      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+        isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg py-3' : 'bg-transparent py-6'
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
     >
       <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
-        <button 
+        <motion.button 
+          whileHover={{ rotate: [-5, 5, -5, 5, 0], scale: 1.1 }}
+          transition={{ duration: 0.5 }}
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className={`font-serif text-2xl font-bold tracking-tight transition-colors duration-300 ${
-            isScrolled ? 'text-foreground' : 'text-white'
-          }`}
+          className="z-50"
           data-testid="link-home"
         >
-          WanYen<span className="text-primary">.</span>
-        </button>
+          <img
+            src={logo}
+            alt="WanYen Cafe"
+            className="h-16 w-auto drop-shadow-md"
+          />
+        </motion.button>
 
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <button
+            <motion.button
+              whileHover={{ scale: 1.1, y: -2 }}
               key={link.id}
               onClick={() => scrollTo(link.id)}
-              className={`text-sm font-medium tracking-wide transition-colors hover:text-primary ${
-                isScrolled ? 'text-foreground/80' : 'text-white/90'
+              className={`text-lg font-extrabold tracking-wide transition-colors ${
+                isScrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-secondary drop-shadow-md'
               }`}
               data-testid={`link-${link.id}`}
             >
               {link.name}
-            </button>
+            </motion.button>
           ))}
-          <a
-            href="https://www.doordash.com/store/wanyen-cafe-salt-lake-city-34741881/77939394/?srsltid=AfmBOoqyyrqwtU_5K2dapTaGxsfSz-J6QRvOnAsal5_HOBH-zt9olKBG"
+          <motion.a
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.95 }}
+            href="https://www.wanyenslc.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-primary text-primary-foreground px-6 py-2.5 rounded-full text-sm font-bold hover:bg-primary/90 transition-transform hover:scale-105 active:scale-95"
+            className={`px-8 py-3 rounded-full text-lg font-black transition-all ml-4 ${
+              isScrolled 
+                ? 'bg-primary text-white shadow-[0_4px_0_#cc0052] hover:shadow-[0_2px_0_#cc0052] hover:translate-y-[2px]' 
+                : 'bg-white text-primary shadow-[0_4px_0_#FFD23F] hover:shadow-[0_2px_0_#FFD23F] hover:translate-y-[2px]'
+            }`}
             data-testid="button-order-nav"
           >
             Order Online
-          </a>
+          </motion.a>
         </nav>
         
-        {/* Mobile menu button - just aesthetic for now to keep focus on scroll experience */}
-        <button className="md:hidden text-2xl" aria-label="Menu">
-          <span className={isScrolled ? 'text-foreground' : 'text-white'}>☰</span>
-        </button>
+        {/* Mobile menu button */}
+        <motion.button 
+          whileTap={{ scale: 0.9 }}
+          className={`md:hidden text-3xl p-2 rounded-full shadow-md z-50 ${
+            isScrolled ? 'bg-primary text-white' : 'bg-white text-primary'
+          }`}
+          aria-label="Menu"
+        >
+          ☰
+        </motion.button>
       </div>
     </motion.header>
   );
