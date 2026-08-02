@@ -29,8 +29,8 @@ export function Footer() {
           <div className="space-y-6">
             <h3 className="text-lg font-black text-secondary uppercase tracking-widest bg-secondary/10 inline-block px-3 py-1 rounded-lg">Visit Us</h3>
             <div className="space-y-2 text-white text-xl font-bold">
-              <p>Downtown Salt Lake City, UT</p>
-              <p className="text-base text-white/50 pt-2 font-medium">(Check Yelp/Google for exact address)</p>
+              <p>378 W Broadway, Suite 115</p>
+              <p className="text-base text-white/60 pt-2 font-medium">Salt Lake City, UT 84101</p>
             </div>
           </div>
 
